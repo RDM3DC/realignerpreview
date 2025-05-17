@@ -24,7 +24,9 @@ PHASE_FILE = "realignr_phase.json"
 GPT_LOG_FILE = "gpt_optimizer_feedback.log"
 GEN_PROMPT = "The meaning of life is"
 GEN_LEN = 50
-SCHEDULE_FILE = "dataset_schedule.json"
+
+# Dataset order used during training
+SCHEDULE = {0: "wikitext", 50000: "tinystories"}
 
 os.makedirs(LOG_DIR, exist_ok=True)
 writer = SummaryWriter(log_dir=LOG_DIR)
@@ -52,9 +54,9 @@ def get_dataset(name):
     return torch.utils.data.DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
 # --- Dataset Schedule ---
-with open(SCHEDULE_FILE, "r") as f:
-    data = json.load(f)
-    schedule = {int(k): v for k, v in data.items()}
+# "SCHEDULE" is defined above as a simple dictionary mapping step numbers to
+# dataset names. Convert it to the internal format expected below.
+schedule = SCHEDULE
 
 # --- Model ---
 class Block(nn.Module):

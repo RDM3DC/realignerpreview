@@ -129,17 +129,10 @@ def main():
     from examples.dataset_switcher_patch import (
         load_dataset, load_dataset_schedule, get_current_dataset
     )
-    
-    # Load training configuration if exists
+
+    # Loader settings can be adjusted directly here
     training_config = {"batch_size": BATCH_SIZE, "num_workers": NUM_WORKERS}
-    try:
-        if os.path.exists("training_config.json"):
-            with open("training_config.json", "r") as f:
-                training_config.update(json.load(f))
-                print(f"📋 Loaded training configuration: {training_config}")
-    except Exception as e:
-        print(f"⚠️ Error loading training_config.json: {e}")
-    
+
     dataset_schedule = load_dataset_schedule()
     last_dataset = None
     current_dataset = None

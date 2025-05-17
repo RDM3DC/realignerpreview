@@ -149,6 +149,15 @@ python analyze_dataset_switching.py
 This finds runs with dataset switching, computes recovery rates, and creates visualizations showing adaptation performance.
 - Animated visualizations of the optimization process
 
+### Removed configuration files
+
+Older versions of this repository included `dataset_schedule.json` and
+`training_config.json` for customizing dataset order and loader settings.
+These files are no longer needed—dataset switching and training parameters are
+now defined directly inside the Python scripts (for example,
+`realignr_resume_crossdomain.py` sets `CONTEXT_SCHEDULE` in code).  The JSON
+files have been removed to avoid confusion.
+
 ## How It Works
 
 ### ARP Component
