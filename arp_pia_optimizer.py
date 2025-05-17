@@ -6,7 +6,7 @@ This optimizer implements:
 2. Pi-Adaptive (πₐ) angle-based rotation for better gradient direction
 3. Momentum-like properties via gradient rotation
 
-Author: Your Name
+Author: Ryan McKenna (RDM3DC)
 Date: May 8, 2025
 """
 
