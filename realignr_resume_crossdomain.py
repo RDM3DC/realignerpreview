@@ -178,7 +178,7 @@ train_loader = get_packed_wikitext103(); loader_iter = iter(train_loader)
 
 # ── LOGGER -----------------------------------------------------------
 writer = SummaryWriter(str(LOG_DIR), purge_step=STEP_START) # Use STEP_START for purge_step
-print(f"▶️  Training starts/resumes at step {step}, ctx={core.ctx_len}") # Use loaded/updated step
+print(f"▶ Training starts/resumes at step {step}, ctx = {core.ctx_len}")
 print(f"[TensorBoard] Log directory: {LOG_DIR}")
 print(f"[TensorBoard] Run: tensorboard --logdir \"{LOG_DIR}\"")
 
@@ -214,7 +214,7 @@ while step < MAX_STEPS:    # -- Curvature logging and anomaly detection --
     C_mean_threshold = 2.0  # Example threshold for anomaly
     if core.C.mean().item() > C_mean_threshold:
         if step - last_curv_warn_step >= 100:
-            print(f"⚠️ Curvature mean high at step {step}")
+            print(f"⚠ High curvature mean {core.C.mean().item():.4f} at step {step}")
             last_curv_warn_step = step    # --- Dynamic curvature learning rate and decay adjustment ---
     c_mean = core.C.mean().item()
     if c_mean < CURVATURE_MIN_THRESHOLD:
@@ -223,7 +223,8 @@ while step < MAX_STEPS:    # -- Curvature logging and anomaly detection --
     
     # Log DELTA and EPSILON
     writer.add_scalar('Curvature/DELTA', DELTA, step)
-    writer.add_scalar('Curvature/EPSILON', EPSILON, step)    def curvature_variance_high(C):
+    writer.add_scalar('Curvature/EPSILON', EPSILON, step)
+    def curvature_variance_high(C):
         # Example: consider variance high if std/mean > 0.5
         c_std = C.std().item()
         c_mean = C.mean().item()
@@ -273,10 +274,11 @@ while step < MAX_STEPS:    # -- Curvature logging and anomaly detection --
             base = max(L_MAX - loss.item(), 0.0)
             curvature_update = DELTA * (base ** gamma) - EPSILON * core.C
             core.C += curvature_update
-            core.C = torch.clamp(core.C, min=0.1)  # keep C positive    # -- CPR diagnostics --------------------------------
+            core.C = torch.clamp(core.C, min=0.1)  # keep C positive
+    # -- CPR diagnostics --------------------------------
     state = cpr.update(loss.item())
     if state == "TRIGGERED" and step % 500 == 0:
-        print(f"⚠️  CPR trigger at step {step}")
+        print(f"⚠ CPR triggered at step {step}")
         writer.add_scalar("CPR/trigger", 1, step)
     elif state == "RESET":
         print(f"🟢 CPR reset at step {step}")
