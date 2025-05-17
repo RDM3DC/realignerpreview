@@ -59,7 +59,7 @@ GEN_PROMPT = "The meaning of life is"
 GEN_LEN    = 50
 
 os.makedirs(LOG_DIR, exist_ok=True)
-# os.makedirs(CKPT_DIR, exist_ok=True) # No need to create BASE_DIR
+os.makedirs(CKPT_DIR, exist_ok=True)
 
 # ── TOKENIZER / DATA HELPERS ----------------------------------------
 # Uses SEQ_LEN for padding/chunking
