@@ -1,0 +1,7 @@
+{
+  "ctx_len": 1024,
+  "loss_plunge_step": 73000,
+  "action_stabilized": true,
+  "G_mean_locked": 2.019,
+  "val_pending": true
+}
