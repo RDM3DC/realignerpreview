@@ -7,7 +7,7 @@ ARPPiAGradientDescent is a novel optimization algorithm that combines Activity-R
 ## Key Features
 
 - **Activity-Regulated Plasticity (ARP)**: Inspired by neurobiological principles, this approach dynamically adapts learning rates based on parameter-specific activity patterns.
-  
+
 - **Pi-Adaptive (πₐ) Rotation**: Improves convergence by adaptively rotating gradients based on the angular relationship between consecutive updates.
 
 - **Adaptive Learning**: Each parameter gets its own conductance (G) value that evolves during training, enabling fine-grained control over the learning process.
