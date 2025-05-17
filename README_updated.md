@@ -210,6 +210,14 @@ For more detailed information about the theory and implementation:
 - See the [detailed documentation](ARPPiAGradientDescent_Documentation.md)
 - Review the code comments in the optimizer implementations
 
+### Removed configuration files
+
+Earlier revisions shipped with `dataset_schedule.json` and
+`training_config.json` for controlling dataset order and loader settings.
+These files are no longer used—parameters such as `CONTEXT_SCHEDULE` are now
+declared directly in the training scripts.  The JSON files have therefore been
+removed.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
