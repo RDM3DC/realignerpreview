@@ -1,0 +1,15 @@
+dt_ns: 0.05
+T_ns: 140.0
+T1_us: 50.0
+Tphi_us: 20.0
+anh_GHz: [0.24, 0.25, 0.26, 0.27]
+spectator_GHz: [0.07, 0.08, 0.09]
+xt_mean: 0.10
+xt_sigma: 0.03
+tau_ns: 2.0
+spsa_steps: 80
+spsa_bounds: [0.0, 0.3]
+grape_steps: 250
+grape_lr: 0.2
+grape_samples: 64
+seed: 42
