@@ -287,6 +287,27 @@ These files are no longer used—parameters such as `CONTEXT_SCHEDULE` are now
 declared directly in the training scripts.  The JSON files have therefore been
 removed.
 
+## Benchmarks
+
+### Quantum Control Ladder XT
+Run the 4-qubit ladder cross-talk benchmark:
+
+```bash
+python benchmarks/quantum-control/ladder4_xt.py --cfg configs/ladder4_xt.yaml --method gaussian
+```
+
+Replace `--method` with `diag-arp`, `mimo-arp`, or `mimo-arp+grape` for other strategies.
+
+### QUBO Benchmark
+Evaluate optimizers on a random QUBO:
+
+```bash
+python benchmarks/ml/qubo_benchmark.py --n 512 --density 0.05 --opt adamw
+python benchmarks/ml/qubo_benchmark.py --n 512 --density 0.05 --opt adamw-realignr-cma
+```
+
+Logs are written to `logs/`.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
