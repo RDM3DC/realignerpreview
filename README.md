@@ -1,5 +1,20 @@
 # ARPPiAGradientDescent Optimizer Suite
 
+## Quickstart
+1. pip install -e .
+2. Run a smoke benchmark:
+
+```bash
+python benchmarks/quantum-control/sweep_amp_t1_tphi_xt_plus.py \
+  --A1 4.0 --A0 0.1 --Tphi 0.1 --T1 8.0 10.0 12.0 \
+  --risk p90 --risk-samples 8 --time-jitter-pct 0.02 \
+  --basis cosine:192 --drag2 --l1 2.4e-3 --tv 6.0e-3 --clip-amp 1.04 \
+  --out outputs/smoke.csv
+```
+
+3. Results land in _summary.csv with p90(EPC), gate mean, TV-gain.
+
+
 ## Overview
 
 ARPPiAGradientDescent is a novel optimization algorithm that combines Activity-Regulated Plasticity (ARP) with Pi-Adaptive (πₐ) rotation for neural network training. This repository contains implementations, enhanced versions, and comprehensive experiments showcasing the optimizer's performance and behavior.
