@@ -1,0 +1,73 @@
+model:
+  kind: emery3
+  Lx: 128
+  Ly: 128
+  t_pd: 1.3
+  t_pp: 0.6
+  U_d: 8.0
+  U_p: 4.0
+  eps_d: 0.0
+  eps_p: 3.0
+  doping_grid: [0.10, 0.15, 0.20]
+
+metric:                      # full GR-analog, time-dependent
+  form: conformal
+  phi0: 0.30
+  sigma: 6.0
+  lambda_K: 0.30
+  dynamic:
+    law: mpc                 # mpc | bandit
+    horizon: 6
+    update_every_layers: 20
+    step_kappa: 0.08
+    bounds: {kappa: [-1,1], lambda_K: [0,0.45], A: [0.6,1.0], Omega: [6,12]}
+
+drive:
+  A0: 0.8
+  Omega: 8.0
+  waveform: cosine
+  trotter: {order: 2, steps: 2200, dt: 0.025}
+
+baths:
+  type: drude_lorentz
+  omega0: 4.0
+  g_ep: 1.0
+  gamma: 0.15
+  T_grid: [0.06, 0.10, 0.14, 0.18, 0.22]
+
+arp_qlg:
+  alpha0: 0.12
+  alpha1: 0.05
+  eta_K: 0.3
+  m_tracking: {notch_bands_GHz: [0.07,0.08,0.09], lsq_steps: 32, lr: 0.02}
+  drag2: {beta1: 1.0, beta2: 0.50}
+  clip:  {amp: 1.010, phase: 0.34}
+  sparsity: {l1: 3.8e-3, tv: 1.3e-2}
+  entropy: {time: 5e-4, spec: 3e-4, mask_notches: true}
+  jitters: {time_pct: 0.02, anh: 0.012, xt: 0.018}
+
+dd: {idle: xy8, twoq: dcg_sk1, rc_twirling: true}
+
+ft:
+  distances: [7,9,11]
+  decoder: stim
+  cycle_us_max: 0.75
+
+estimator:
+  kind: cvar
+  alpha: 0.1
+  readout_mit: true
+  zne: {enable: true, scales: [1.0,1.2,1.4], mode: time_stretch}
+
+observables: [chi_pair_dwave, gap_eff_over_t, S_pair_pipi, rho_s, binder_U4]
+
+targets:
+  chi_d_gain_min: 4.8
+  gap_eff_over_t_min: 0.48
+  pL_layer_max: 2.0e-11
+  shot_overhead_max: 3.5
+
+scaling:
+  sizes: [32, 64, 128]
+  temps: [0.06,0.08,0.10,0.12,0.14,0.16,0.18,0.20,0.22]
+  outputs_dir: outputs/ft_scaling
