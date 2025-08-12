@@ -1,3 +1,18 @@
 [build-system]
-requires = ["setuptools>=61", "wheel"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "realignrq"
+version = "0.1.0"
+description = "Risk-aware quantum-control optimizer: MIMO-ARP + DRAG-2 + sparse GRAPE"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+dependencies = [
+  "numpy>=1.24", "scipy>=1.11", "matplotlib", "pandas",
+  "numba", "tqdm", "pyyaml", "stim>=1.12", "networkx"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
