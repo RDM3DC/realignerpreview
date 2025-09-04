@@ -1,5 +1,7 @@
 # ARPPiAGradientDescent Optimizer Suite
 
+[![Sponsor](https://img.shields.io/badge/Sponsor-RDM3DC-pink)](https://github.com/sponsors/RDM3DC)
+
 ## Overview
 
 ARPPiAGradientDescent is a novel optimization algorithm that combines Activity-Regulated Plasticity (ARP) with Pi-Adaptive (πₐ) rotation for neural network training. This repository contains implementations, enhanced versions, and comprehensive experiments showcasing the optimizer's performance and behavior.
